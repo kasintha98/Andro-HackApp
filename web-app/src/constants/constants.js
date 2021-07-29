@@ -1,7 +1,5 @@
-
-const constants ={
-    backend_url :'http://localhost:5000',
-}
-
+const constants = {
+  backend_url: "https://hackathonback.herokuapp.com",
+};
 
 export default constants;
