@@ -8,7 +8,7 @@ import Register from "./components/auth/Register";
 import UserContext from "./context/userContext";
 import Navbar from "./components/nav/Navbar";
 
-import constants from "./constants/constants"
+import constants from "./constants/constants";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import ViewSpaceDetails from "./pages/ViewSpaceDetails";
@@ -16,6 +16,7 @@ import SpaceDetails from "./pages/SpaceDetails";
 import ViewBuyerBookings from "./pages/ViewBuyerBookings";
 
 
+import AddSpace from "./pages/AddSpace";
 
 export default function App() {
   const [userData, setUserData] = useState({
@@ -32,13 +33,13 @@ export default function App() {
       }
 
       const tokenRes = await Axios.post(
-        constants.backend_url+"/users/tokenIsValid",
+        constants.backend_url + "/users/tokenIsValid",
         null,
         { headers: { "x-auth-token": token } }
       );
       console.log(tokenRes.data);
       if (tokenRes.data) {
-        const userRes = await Axios.get(constants.backend_url+"/users/", {
+        const userRes = await Axios.get(constants.backend_url + "/users/", {
           headers: { "x-auth-token": token },
         });
         setUserData({
@@ -58,15 +59,14 @@ export default function App() {
           <Navbar />
           <div className="container">
             <Switch>
-              
               <Route exact path="/dashboard" component={Dashboard} />
+
               <Route path="/ViewSpaceDetails" component={ViewSpaceDetails} />
               <Route path="/ViewBuyerBookings" component={ViewBuyerBookings} />
               <Route path="/SpaceDetails" component={SpaceDetails} />
               <Route path="/register" component={Register} />
+              <Route path="/add-space" component={AddSpace} />
               <Route path="/" component={Login} />
-
-        
             </Switch>
           </div>
         </UserContext.Provider>
