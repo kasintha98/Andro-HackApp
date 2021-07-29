@@ -12,7 +12,7 @@ router.post('/addspace',async (req,res,body)=>{
     }
 
     const newSpace= new Space({
-        spacetype:space.spacetype,
+        type:space.spacetype,
         capacity:space.capacity,
         price:space.price,
         facilities:space.facilities
