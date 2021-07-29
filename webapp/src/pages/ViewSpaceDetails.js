@@ -9,9 +9,16 @@ import Divider from '@material-ui/core/Divider';
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles } from '@material-ui/core/styles';
 import imafff from '../../src/images/Cat04.jpg';
+import AddBooking from './AddBooking';
 
 
 function ViewSpaceDetails() {
+
+    const [show, setShow] = useState(false);
+
+
+    const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -42,10 +49,16 @@ function ViewSpaceDetails() {
                     </Media>
             </Col>
             <Col sm={12} lg={7} md={6} className='detail_col col2'>
-                <h5 className="product_det_category">Available Colors</h5>
-                <h3 className="product_det_name">Available Colors</h3>
-                <h5 className="product_det_colors">Available Colors</h5>          
+                <h5 className="product_det_category">Space Name</h5>
+                <h3 className="product_det_name">Space Name</h3>
+                <h5 className="product_det_colors">Available</h5>          
             </Col>
+            <div className='product_det_btngrp'>
+                            <>
+                            <Button className='product_det_btn' onClick={handleShow} >Add Booking</Button>                           
+                            <AddBooking show={show} onHide={handleClose}/>
+                            </>
+            </div>
             </Row>
             </Container>
             <Container className='pro_detail_container2'>
