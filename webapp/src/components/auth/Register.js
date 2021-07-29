@@ -22,10 +22,13 @@ export default function Register() {
     try {
       const newUser = { email, password, passwordCheck, displayName };
       await Axios.post(constants.backend_url + "/users/register", newUser);
-      const loginRes = await Axios.post(constants.backend_url + "/users/login", {
-        email,
-        password,
-      });
+      const loginRes = await Axios.post(
+        constants.backend_url + "/users/login",
+        {
+          email,
+          password,
+        }
+      );
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
@@ -41,7 +44,7 @@ export default function Register() {
     <div>
       <div
         class="  p-3 mb-2  text-white "
-      //   style={{ backgroundImage: `url(${bg2})` }}
+        //   style={{ backgroundImage: `url(${bg2})` }}
       >
         <div
           class="container-lg  shadow p-3 mb-5  text-dark  "
@@ -139,41 +142,5 @@ export default function Register() {
         </div>
       </div>
     </div>
-
-    //   <div className="page">
-    //   <h2>Register</h2>
-    //   {error && (
-    //     <ErrorNotice message={error} clearError={() => setError(undefined)} />
-    //   )}
-    //   <form className="form" onSubmit={submit}>
-    //     <label htmlFor="register-email">Email</label>
-    //     <input
-    //       id="register-email"
-    //       type="email"
-    //       onChange={(e) => setEmail(e.target.value)}
-    //     />
-
-    //     <label htmlFor="register-password">Password</label>
-    //     <input
-    //       id="register-password"
-    //       type="password"
-    //       onChange={(e) => setPassword(e.target.value)}
-    //     />
-    //     <input
-    //       type="password"
-    //       placeholder="Verify password"
-    //       onChange={(e) => setPasswordCheck(e.target.value)}
-    //     />
-
-    //     <label htmlFor="register-display-name">Display name</label>
-    //     <input
-    //       id="register-display-name"
-    //       type="text"
-    //       onChange={(e) => setDisplayName(e.target.value)}
-    //     />
-
-    //     <input type="submit" value="Register" />
-    //   </form>
-    // </div>
   );
 }
