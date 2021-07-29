@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import userContext from "../../context/userContext";
+import { Link } from "react-router-dom";
 
 export default function AuthOptions() {
   const { userData, setUserData } = useContext(userContext);
@@ -31,6 +32,13 @@ export default function AuthOptions() {
           >
             Log out
           </button>
+          <Link
+            class="btn btn-outline-secondary mx-2"
+            to="/add-space"
+            style={{ borderRadius: "4rem" }}
+          >
+            Add Space
+          </Link>
         </>
       ) : (
         <>
