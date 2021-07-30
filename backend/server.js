@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
+const spaceRoute=require('./routes/spaceRouter');
+
 // set up express
 
 const app = express();
@@ -26,3 +28,4 @@ mongoose.connect(
 );
 
 app.use("/users", require("./routes/userRouter"));
+app.use('/spaces',spaceRoute);

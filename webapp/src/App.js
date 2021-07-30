@@ -11,6 +11,12 @@ import Navbar from "./components/nav/Navbar";
 import constants from "./constants/constants";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
+import ViewSpaceDetails from "./pages/ViewSpaceDetails";
+import SpaceDetails from "./pages/SpaceDetails";
+import ViewBuyerBookings from "./pages/ViewBuyerBookings";
+import CompanyBookings from "./pages/CompanyBookings";
+
+
 import AddSpace from "./pages/AddSpace";
 
 export default function App() {
@@ -56,8 +62,12 @@ export default function App() {
             <Switch>
               <Route exact path="/dashboard" component={Dashboard} />
 
+              <Route path="/ViewSpaceDetails" component={ViewSpaceDetails} />
+              <Route path="/ViewBuyerBookings" component={ViewBuyerBookings} />
+              <Route path="/SpaceDetails" component={SpaceDetails} />
               <Route path="/register" component={Register} />
               <Route path="/add-space" component={AddSpace} />
+              <Route path="/CompanyBookings" component={CompanyBookings} />
               <Route path="/" component={Login} />
             </Switch>
           </div>
