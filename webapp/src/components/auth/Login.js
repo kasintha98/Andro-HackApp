@@ -29,6 +29,7 @@ export default function Login() {
         user: loginRes.data.user,
       });
       localStorage.setItem("auth-token", loginRes.data.token);
+      localStorage.setItem("user", loginRes.data.user.id);
       history.push("/dashboard");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
@@ -38,76 +39,82 @@ export default function Login() {
     <div>
       <div
         class="  p-3 mb-2  text-white "
-      //   style={{ backgroundImage: `url(${bg2})` }}
+        //   style={{ backgroundImage: `url(${bg2})` }}
       >
         <div
           class="container-lg  shadow p-3 mb-5  text-dark  "
           style={{ marginTop: "4%", backgroundColor: "white" }}
         >
-
-            <div class="row" style={{ marginTop: "1%" }}>
-              <img src={Cal} class="img-thumbnail homeImg" alt="..." />
-            </div>
-            <div class="row">
-              <div
-                class="container-sm   p-3 mb-5 bg-body rounded bg-light text-dark "
-                style={{ marginTop: "13%", height: "90%" }}
-              >
+          <div class="row" style={{ marginTop: "1%" }}>
+            <img src={Cal} class="img-thumbnail homeImg" alt="..." />
+          </div>
+          <div class="row">
+            <div
+              class="container-sm   p-3 mb-5 bg-body rounded bg-light text-dark "
+              style={{ marginTop: "13%", height: "90%" }}
+            >
+              <div>
+                <div class="mx-auto">
+                  <h2
+                    style={{
+                      textAlign: "center",
+                      marginBottom: "5%",
+                      marginTop: 0,
+                    }}
+                  >
+                    Login
+                  </h2>
+                </div>
+                <p className="msg">Please Login to your Acount</p>
+                {error && (
+                  <ErrorNotice
+                    message={error}
+                    clearError={() => setError(undefined)}
+                  />
+                )}
                 <div>
-                  <div class="mx-auto">
-                    <h2 style={{textAlign:"center", marginBottom:"5%", marginTop:0}}>Login</h2>
-                  </div>
-                  <p className="msg">Please Login to your Acount</p>
-                  {error && (
-                    <ErrorNotice
-                      message={error}
-                      clearError={() => setError(undefined)}
-                    />
-                  )}
-                  <div>
-                    <form onSubmit={submit}>
-                      <div className="mb-3">
-                        <label
-                          htmlFor="exampleInputEmail1"
-                          className="form-label"
-                        >
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          className="form-control"
-                          id="login-email"
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label
-                          htmlFor="exampleInputPassword1"
-                          className="form-label"
-                        >
-                          Password
-                        </label>
-                        <input
-                          type="password"
-                          className="form-control"
-                          id="login-password"
-                          onChange={(e) => setPassword(e.target.value)}
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="btn btn-dark homeBtn"
-                        value="Log in"
+                  <form onSubmit={submit}>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="exampleInputEmail1"
+                        className="form-label"
                       >
-                        Sign In
-                      </button>
-                    </form>
-                  </div>
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="login-email"
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="exampleInputPassword1"
+                        className="form-label"
+                      >
+                        Password
+                      </label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        id="login-password"
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="btn btn-dark homeBtn"
+                      value="Log in"
+                    >
+                      Sign In
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
-
+          </div>
         </div>
       </div>
     </div>
