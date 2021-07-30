@@ -5,6 +5,7 @@ const router = require("express").Router();
 
 router.post("/addspace", async (req, res, body) => {
   try {
+    let sellerOb = await User.findOne({_id:req.body.sellerId});
     const space ={
         spacetype:req.body.type,
         capacity:req.body.capacity,
@@ -13,6 +14,7 @@ router.post("/addspace", async (req, res, body) => {
     }
 
     const newSpace= new Space({
+        seller_id:sellerOb,
         type:space.spacetype,
         capacity:space.capacity,
         price:space.price,
@@ -29,6 +31,12 @@ router.post("/addspace", async (req, res, body) => {
 
 router.route("/getallspaces").get((req, res) => {
   Space.find()
+    .then((cart) => res.json(cart))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.route("/getallspaces/:id").get((req, res) => {
+  Space.find({seller_id : req.params.id})
     .then((cart) => res.json(cart))
     .catch((err) => res.status(400).json("Error: " + err));
 });
