@@ -33,9 +33,9 @@ export default function Login() {
       localStorage.setItem("role", loginRes.data.user.role);
 
       if (localStorage.getItem("role") === "seller") {
-        history.push("/ViewSpaceDetails");
+        history.push("/SpaceDetails");
       }
-      history.push("/SpaceDetails");
+      history.push("/UserMain");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
