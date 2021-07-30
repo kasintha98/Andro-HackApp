@@ -6,6 +6,8 @@ import ErrorNotice from "../misc/ErrorNotice";
 import Cal from "../../images/cal.png";
 import constants from "../../constants/constants";
 
+import "../../css/style.css";
+
 export default function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -42,20 +44,20 @@ export default function Login() {
           class="container-lg  shadow p-3 mb-5  text-dark  "
           style={{ marginTop: "4%", backgroundColor: "white" }}
         >
-          <div class="row row-cols-2" style={{ marginTop: "1%" }}>
-            <div class="col  ">
-              <img src={Cal} class="img-thumbnail" alt="..."></img>
+
+            <div class="row" style={{ marginTop: "1%" }}>
+              <img src={Cal} class="img-thumbnail homeImg" alt="..." />
             </div>
-            <div class="col ">
+            <div class="row">
               <div
                 class="container-sm   p-3 mb-5 bg-body rounded bg-light text-dark "
                 style={{ marginTop: "13%", height: "90%" }}
               >
                 <div>
                   <div class="mx-auto">
-                    <h2>Login</h2>
+                    <h2 style={{textAlign:"center", marginBottom:"5%", marginTop:0}}>Login</h2>
                   </div>
-                  <p>Please Login to your Acount</p>
+                  <p className="msg">Please Login to your Acount</p>
                   {error && (
                     <ErrorNotice
                       message={error}
@@ -95,7 +97,7 @@ export default function Login() {
 
                       <button
                         type="submit"
-                        className="btn btn-dark ml-150 px-5"
+                        className="btn btn-dark homeBtn"
                         value="Log in"
                       >
                         Sign In
@@ -105,7 +107,7 @@ export default function Login() {
                 </div>
               </div>
             </div>
-          </div>
+
         </div>
       </div>
     </div>
