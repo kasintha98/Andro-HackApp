@@ -24,6 +24,7 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
+import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import Axios from 'axios';
 import Swal from 'sweetalert2';
 import { useHistory } from 'react-router';
@@ -159,7 +160,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Space List
+          Booking List
         </Typography>
       )}
 
@@ -167,7 +168,7 @@ const EnhancedTableToolbar = (props) => {
 
         <Tooltip title="Update" onClick={onClickUpdate}>
           <IconButton aria-label="update">
-            <EditIcon/>
+          <ListAltOutlinedIcon/>
           </IconButton>
         </Tooltip>
 
@@ -176,14 +177,15 @@ const EnhancedTableToolbar = (props) => {
       )}      
 
       {numSelected > 0 ? (
-        <Tooltip title="Delete" onClick={onClickDelete}>
-          <IconButton aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+        // <Tooltip title="Delete" onClick={onClickDelete}>
+        //   <IconButton aria-label="delete">
+        //     <DeleteIcon />
+        //   </IconButton>
+        // </Tooltip>
+        <Typography/>
       ) : (
         <>
-        <Link href='/add-space'>
+        <Link href='/add-suppliers'>
         <Tooltip title="Add New Supplier">
           <IconButton aria-label="AddBoxRounded">
             <AddBoxRoundedIcon />
@@ -258,7 +260,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SpaceDetails() {
+export default function CompanyBookings() {
 
   const history = useHistory()
   const [suppliers, setSuppliers] = useState([]);
@@ -398,13 +400,13 @@ const handleUpdate = (_id) => {
         <Link color="inherit" href="/owner-main-page" >
           Home
         </Link>
-      <Typography color="textPrimary">All Spaces</Typography>
+      <Typography color="textPrimary">Bookings</Typography>
       </Breadcrumbs>
       <Divider />
 
     <Container className={classes.supplier_container}>
     
-    <h1 className={classes.table_title}>All Spaces</h1>
+    <h1 className={classes.table_title}>Bookings</h1>
     <div className={classes.root}>
       <Paper className={classes.paper} elevation = {15}>
         <EnhancedTableToolbar numSelected={selected.length} onClickDelete={handleDelete} onClickUpdate={handleUpdate}/>

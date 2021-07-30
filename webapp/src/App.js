@@ -14,6 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import ViewSpaceDetails from "./pages/ViewSpaceDetails";
 import SpaceDetails from "./pages/SpaceDetails";
 import ViewBuyerBookings from "./pages/ViewBuyerBookings";
+import CompanyBookings from "./pages/CompanyBookings";
 
 
 import AddSpace from "./pages/AddSpace";
@@ -66,6 +67,7 @@ export default function App() {
               <Route path="/SpaceDetails" component={SpaceDetails} />
               <Route path="/register" component={Register} />
               <Route path="/add-space" component={AddSpace} />
+              <Route path="/CompanyBookings" component={CompanyBookings} />
               <Route path="/" component={Login} />
             </Switch>
           </div>
