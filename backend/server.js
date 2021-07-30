@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
-const spaceRoute=require('./routes/spaceRouter');
+const spaceRoute = require("./routes/spaceRouter");
 
 // set up express
 
@@ -28,4 +28,5 @@ mongoose.connect(
 );
 
 app.use("/users", require("./routes/userRouter"));
-app.use('/spaces',spaceRoute);
+app.use("/spaces", spaceRoute);
+app.use("/book", require("./routes/bookingRouter"));

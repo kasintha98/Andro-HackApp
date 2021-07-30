@@ -5,19 +5,21 @@ const router = require("express").Router();
 
 router.post("/addspace", async (req, res, body) => {
   try {
-    const space ={
-        spacetype:req.body.type,
-        capacity:req.body.capacity,
-        price:req.body.price,
-        facilities:req.body.facilities,
-    }
+    let sellerOb = await User.findOne({ _id: req.body.seller_id });
+    const space = {
+      spacetype: req.body.type,
+      capacity: req.body.capacity,
+      price: req.body.price,
+      facilities: req.body.facilities,
+      seller_id: req.body.seller_id,
+    };
 
-    const newSpace= new Space({
-        type:space.spacetype,
-        capacity:space.capacity,
-        price:space.price,
-        facilities:space.facilities
-
+    const newSpace = new Space({
+      seller_id: space.seller_id,
+      type: space.spacetype,
+      capacity: space.capacity,
+      price: space.price,
+      facilities: space.facilities,
     });
 
     const savedSpace = await newSpace.save();
@@ -29,6 +31,12 @@ router.post("/addspace", async (req, res, body) => {
 
 router.route("/getallspaces").get((req, res) => {
   Space.find()
+    .then((cart) => res.json(cart))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.route("/getallspaces/:id").get((req, res) => {
+  Space.find({ seller_id: req.params.id })
     .then((cart) => res.json(cart))
     .catch((err) => res.status(400).json("Error: " + err));
 });

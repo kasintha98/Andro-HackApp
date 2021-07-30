@@ -2,11 +2,21 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
-const User = require("../models/userModel");
+const Seller = require("../models/userModel");
 
 router.post("/register", async (req, res) => {
   try {
-    let { email, password, passwordCheck, displayName } = req.body;
+    let {
+      role,
+      companyname,
+      email,
+      password,
+      passwordCheck,
+      description,
+      location,
+      district,
+      contactno,
+    } = req.body;
 
     // validate
 
@@ -21,21 +31,24 @@ router.post("/register", async (req, res) => {
         .status(400)
         .json({ msg: "Enter the same password twice for verification." });
 
-    const existingUser = await User.findOne({ email: email });
+    const existingUser = await Seller.findOne({ email: email });
     if (existingUser)
       return res
         .status(400)
         .json({ msg: "An account with this email already exists." });
 
-    if (!displayName) displayName = email;
-
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
 
     const newUser = new User({
+      role,
+      companyname,
       email,
       password: passwordHash,
-      displayName,
+      description,
+      location,
+      district,
+      contactno,
     });
     const savedUser = await newUser.save();
     res.json(savedUser);
@@ -67,6 +80,7 @@ router.post("/login", async (req, res) => {
       user: {
         id: user._id,
         displayName: user.displayName,
+        role: user.role,
       },
     });
   } catch (err) {
@@ -105,7 +119,7 @@ router.get("/", auth, async (req, res) => {
   res.json({
     displayName: user.displayName,
     id: user._id,
-    email:user.email
+    email: user.email,
   });
 });
 

@@ -9,8 +9,8 @@ import Cal from "../images/cal.png";
 import constants from "../constants/constants";
 
 export default function AddSpace(props) {
-  const [type, setType] = useState();
-  const [amount, setAmount] = useState();
+  const [type, setType] = useState("room");
+  const [capacity, setCapacity] = useState();
   const [price, setPrice] = useState();
   const [facilities, setFacilities] = useState();
   const [error, setError] = useState();
@@ -18,24 +18,25 @@ export default function AddSpace(props) {
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
 
-  const submit = async (e) => {
-    // e.preventDefault();
+  const submit = async () => {
     try {
-      /* const newUser = { email, password, passwordCheck, displayName };
-      await Axios.post(constants.backend_url + "/users/register", newUser);
-      const loginRes = await Axios.post(
-        constants.backend_url + "/users/login",
-        {
-          email,
-          password,
+      let user = localStorage.getItem("user");
+      console.log(user);
+      const newSpace = {
+        seller_id: user,
+        type,
+        capacity,
+        price,
+        facilities,
+      };
+
+      Axios.post(`${constants.backend_url}/spaces/addspace`, newSpace).then(
+        (res) => {
+          console.log(res.data);
         }
       );
-      setUserData({
-        token: loginRes.data.token,
-        user: loginRes.data.user,
-      });
-      localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/dashboard"); */
+
+      history.push("/SpaceDetails");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
@@ -54,20 +55,23 @@ export default function AddSpace(props) {
             <Form>
               <lable>Space Type</lable>
               <br></br>
-              <select class="form-control">
-                <option>1</option>
-                <option>1</option>
+              <select
+                class="form-control"
+                onChange={(e) => setType(e.target.value)}
+              >
+                <option value="room">Meeting Room</option>
+                <option value="space">Working Space</option>
               </select>
               <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlInput1"
               >
-                <Form.Label>Accompodate Amount</Form.Label>
+                <Form.Label>Capacity</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder=""
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
+                  value={capacity}
+                  onChange={(e) => setCapacity(e.target.value)}
                 />
               </Form.Group>
               <Form.Group
