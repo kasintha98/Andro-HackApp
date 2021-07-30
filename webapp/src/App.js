@@ -16,7 +16,7 @@ import SpaceDetails from "./pages/SpaceDetails";
 import ViewBuyerBookings from "./pages/ViewBuyerBookings";
 import CompanyBookings from "./pages/CompanyBookings";
 
-
+import FeaturedProducts from "./pages/FeaturedProducts";
 import AddSpace from "./pages/AddSpace";
 
 export default function App() {
@@ -65,6 +65,7 @@ export default function App() {
               <Route path="/ViewSpaceDetails" component={ViewSpaceDetails} />
               <Route path="/ViewBuyerBookings" component={ViewBuyerBookings} />
               <Route path="/SpaceDetails" component={SpaceDetails} />
+              <Route path="/UserMain" component={FeaturedProducts} />
               <Route path="/register" component={Register} />
               <Route path="/add-space" component={AddSpace} />
               <Route path="/CompanyBookings" component={CompanyBookings} />
