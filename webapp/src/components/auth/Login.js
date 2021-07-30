@@ -30,7 +30,12 @@ export default function Login() {
       });
       localStorage.setItem("auth-token", loginRes.data.token);
       localStorage.setItem("user", loginRes.data.user.id);
-      history.push("/dashboard");
+      localStorage.setItem("role", loginRes.data.user.role);
+
+      if (localStorage.getItem("role") === "seller") {
+        history.push("/ViewSpaceDetails");
+      }
+      history.push("/SpaceDetails");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }

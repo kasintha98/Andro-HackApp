@@ -6,7 +6,17 @@ const Seller = require("../models/userModel");
 
 router.post("/register", async (req, res) => {
   try {
-    let { role,companyname,email, password, passwordCheck, description,location,district,contactno } = req.body;
+    let {
+      role,
+      companyname,
+      email,
+      password,
+      passwordCheck,
+      description,
+      location,
+      district,
+      contactno,
+    } = req.body;
 
     // validate
 
@@ -38,7 +48,7 @@ router.post("/register", async (req, res) => {
       description,
       location,
       district,
-      contactno
+      contactno,
     });
     const savedUser = await newUser.save();
     res.json(savedUser);
@@ -46,7 +56,6 @@ router.post("/register", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 
 router.post("/login", async (req, res) => {
   try {
@@ -71,6 +80,7 @@ router.post("/login", async (req, res) => {
       user: {
         id: user._id,
         displayName: user.displayName,
+        role: user.role,
       },
     });
   } catch (err) {
@@ -109,7 +119,7 @@ router.get("/", auth, async (req, res) => {
   res.json({
     displayName: user.displayName,
     id: user._id,
-    email:user.email
+    email: user.email,
   });
 });
 
